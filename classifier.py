@@ -7,13 +7,13 @@ import sys
 from sklearn.cluster import MiniBatchKMeans
 
 # Search current directory for KEA rasters
-InputImages = glob.glob('*.kea')
+InputImages = glob.glob('*.tif')
 
 # Define the number of spectral classes
 SpectralClasses = 6
 
 # Define format and datatype of output raster
-gdalformat = 'KEA'
+gdalformat = 'TIFF'
 gdaldatatype = gdal.GDT_Byte
 
 # Define the classifier
@@ -24,7 +24,7 @@ if not InputImages:
   sys.exit("Error: No input images provided.")
 
 for Raster in sorted(InputImages):
-    OutImage = Raster.replace('.kea','_Classified.kea')
+    OutImage = Raster.replace('.tiff','_Classified.tiff')
 
     print("Reading " + Raster)
     Image = gdal.Open(Raster, gdal.GA_ReadOnly)
